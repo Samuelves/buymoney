@@ -1,6 +1,6 @@
 # BuyMoney
 
-<img src="https://github.com/Samuelves/buymoney/tree/main/public/image/project.png?raw=true" alt="project image">
+<img src="https://raw.githubusercontent.com/Samuelves/buymoney/main/public/image/project.png" alt="project image">
 
 > Comprador e Conversor de Moedas
 
