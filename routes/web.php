@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ConverterBuyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +20,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/converterbuy', [App\Http\Controllers\ConverterBuyController::class, 'index'])->name('converterbuy');
+Route::get('/converterbuy', [ConverterBuyController::class, 'index'])->name('converterbuy');
+Route::post('/quotation', [ConverterBuyController::class, 'quotation'])->name('quotation');

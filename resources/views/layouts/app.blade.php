@@ -43,9 +43,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Taxas') }}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Metódos de pagamento') }}</a>
-                            </li>
                         @endauth
                     </ul>
 
