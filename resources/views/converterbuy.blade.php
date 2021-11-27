@@ -25,12 +25,14 @@
                         </div>
                         <div class="form-group">
                             <label for="valueToConverter">Valor</label>
-                            <input type="text" id="valueToConverter" class="form-control" placeholder="12,90" required>
+                            <input type="number" value="900" min="900" max="900000" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control" id="valueToConverter" />
                         </div>
                         <div class="form-group">
                             <label for="paymentMethod">Forma de Pagamento</label>
                             <select id="paymentMethod" class="form-control">
-                                <option>Select padrão</option>
+                                @foreach ($payment_methods as $payment_method)
+                                    <option value="{{ $payment_method->id }}">{{ $payment_method->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Comprar</button>

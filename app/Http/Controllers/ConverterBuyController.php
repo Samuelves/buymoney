@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\PaymentMethod;
 class ConverterBuyController extends Controller
 {
    public function index()
    {
-      return view('converterbuy');
+      $payment_methods = PaymentMethod::all();
+      return view('converterbuy', compact('payment_methods'));
    }
 }
