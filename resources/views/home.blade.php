@@ -15,7 +15,7 @@
                     @endif
 
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="{{ route('converterbuy') }}" class="list-group-item list-group-item-action">
                             Converter/Comprar
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">Histórico</a>

@@ -35,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Converter/Comprar') }}</a>
+                                <a class="nav-link" href="{{ route('converterbuy') }}">{{ __('Converter/Comprar') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Histórico') }}</a>
