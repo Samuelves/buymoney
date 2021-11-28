@@ -41,7 +41,7 @@
                                 <a class="nav-link" href="{{ route('history') }}">{{ __('Histórico') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Taxas') }}</a>
+                                <a class="nav-link" href="{{ route('taxes') }}">{{ __('Taxas') }}</a>
                             </li>
                         @endauth
                     </ul>

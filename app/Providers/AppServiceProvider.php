@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Http\Interfaces\IHistory',
             'App\Application\History\History'
         );
+        $this->app->bind(
+            'App\Http\Interfaces\ITaxes',
+            'App\Application\Taxes\Taxes'
+        );
         // Repositories
         $this->app->bind(
             'App\Application\Interfaces\ICoins',
@@ -37,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Application\Interfaces\IHistory',
             'App\Infra\InternalData\HistoryRepository'
+        );
+        $this->app->bind(
+            'App\Application\Interfaces\ITaxes',
+            'App\Infra\InternalData\TaxesRepository'
         );
     }
 

@@ -5,17 +5,21 @@ namespace App\Application\Quotation;
 use App\Http\Interfaces\IQuotation;
 use App\Infra\ExternalData\QuotationRepository;
 use App\Infra\InternalData\HistoryRepository;
+use App\Infra\InternalData\TaxesRepository;
 use App\Models\History as HistoryModel;
+use App\Models\Taxes as TaxesModel;
 use Illuminate\Http\Request;
 
 class Quotation  implements IQuotation
 {
   private $quotationRepository;
   private $historyRepository;
-  public function __construct(QuotationRepository $quotationRepository, HistoryRepository $historyRepository)
+  private $taxeRepository;
+  public function __construct(QuotationRepository $quotationRepository, HistoryRepository $historyRepository, TaxesRepository $taxeRepository)
   {
     $this->quotationRepository = $quotationRepository;
     $this->historyRepository = $historyRepository;
+    $this->taxeRepository = $taxeRepository;
   }
   public function getQuotation(Request $request)
   {
@@ -69,11 +73,12 @@ class Quotation  implements IQuotation
     if($paymentMethod != 'boleto' && $paymentMethod != 'card'){
       throw new \Exception('Payment method not found');
     }
+    $taxes = $this->taxeRepository->findTaxes(new TaxesModel);
     if($paymentMethod == 'boleto'){
-      return (1.37 / 100) * $price;
+      return ($taxes->tax_boleto / 100) * $price;
     }
     if($paymentMethod == 'card'){
-      return (7.73 / 100) * $price;
+      return ($taxes->tax_card / 100) * $price;
     }
   }
   private function getValueWithTaxes($price)

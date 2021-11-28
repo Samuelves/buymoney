@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConverterBuyController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\TaxesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/converterbuy', [ConverterBuyController::class, 'index'])->name('converterbuy');
 Route::post('/quotation', [ConverterBuyController::class, 'quotation'])->name('quotation');
 Route::get('/history', [HistoryController::class, 'index'])->name('history');
+Route::get('/taxes', [TaxesController::class, 'index'])->name('taxes');
+Route::post('/taxes/save', [TaxesController::class, 'save'])->name('taxes.save');
