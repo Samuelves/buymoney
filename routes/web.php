@@ -15,12 +15,8 @@ use App\Http\Controllers\TaxesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/converterbuy', [ConverterBuyController::class, 'index'])->name('converterbuy');
 Route::post('/quotation', [ConverterBuyController::class, 'quotation'])->name('quotation');
