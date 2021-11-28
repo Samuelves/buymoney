@@ -74,11 +74,14 @@ class Quotation  implements IQuotation
       throw new \Exception('Payment method not found');
     }
     $taxes = $this->taxeRepository->findTaxes(new TaxesModel);
+    
     if($paymentMethod == 'boleto'){
-      return ($taxes->tax_boleto / 100) * $price;
+      $paymenttax = $taxes->tax_boleto ?? 7.73;
+      return ($paymenttax / 100) * $price;
     }
     if($paymentMethod == 'card'){
-      return ($taxes->tax_card / 100) * $price;
+      $paymenttax = $taxes->tax_card ?? 7.73;
+      return ( $paymenttax / 100) * $price;
     }
   }
   private function getValueWithTaxes($price)

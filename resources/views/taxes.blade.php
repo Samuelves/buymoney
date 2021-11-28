@@ -21,6 +21,9 @@
                         </form>
                     </div>
                 </div>
+                <div class="alert" role="alert" id="alert">
+                    <span id="alert-message"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -31,7 +34,8 @@
         let tax_boleto = document.querySelector('#tax_boleto').value;
         let tax_card = document.querySelector('#tax_card').value;
         let _token   = $('meta[name="csrf-token"]').attr('content');
-
+        let alert = document.querySelector('#alert')
+        let alert_message = document.querySelector('#alert-message')
       fetch('/taxes/save', {
           method: 'POST',
           headers: {
@@ -45,10 +49,12 @@
             })
         })
         .then(function(response) {
-            return response.json();
+            alert.classList.add('alert-success');
+            alert_message.textContent = 'Taxas atualizadas com sucesso!';
         })
         .catch(function(error) {
-            console.log(error);
+            alert.classList.add('alert-danger');
+            alert_message.textContent = 'Erro ao atualizar taxas!';
         });
   }
 
