@@ -36,6 +36,12 @@ DB_PASSWORD=secret
 php artisan migrate
 php artisan serve --port=PORTADESUAPREFERENCIA
 ```
+
+## Preview in Heroku
+```
+https://pure-gorge-39186.herokuapp.com/
+```
+
 ## 🤝 Colaboradores
 
 <table>
