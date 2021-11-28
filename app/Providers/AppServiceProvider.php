@@ -21,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Http\Interfaces\IQuotation',
             'App\Application\Quotation\Quotation'
         );
+        $this->app->bind(
+            'App\Http\Interfaces\IHistory',
+            'App\Application\History\History'
+        );
         // Repositories
         $this->app->bind(
             'App\Application\Interfaces\ICoins',
@@ -29,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Application\Interfaces\IQuotation',
             'App\Infra\ExternalData\QuotationRepository'
+        );
+        $this->app->bind(
+            'App\Application\Interfaces\IHistory',
+            'App\Infra\InternalData\HistoryRepository'
         );
     }
 

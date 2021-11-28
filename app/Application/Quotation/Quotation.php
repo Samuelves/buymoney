@@ -4,14 +4,18 @@ namespace App\Application\Quotation;
 
 use App\Http\Interfaces\IQuotation;
 use App\Infra\ExternalData\QuotationRepository;
+use App\Infra\InternalData\HistoryRepository;
+use App\Models\History as HistoryModel;
 use Illuminate\Http\Request;
 
 class Quotation  implements IQuotation
 {
   private $quotationRepository;
-  public function __construct(QuotationRepository $quotationRepository)
+  private $historyRepository;
+  public function __construct(QuotationRepository $quotationRepository, HistoryRepository $historyRepository)
   {
     $this->quotationRepository = $quotationRepository;
+    $this->historyRepository = $historyRepository;
   }
   public function getQuotation(Request $request)
   {
@@ -34,6 +38,17 @@ class Quotation  implements IQuotation
           'status' => 400
         ];
     }
+    $history = [
+      'coin_base' => $request['coinBase'],
+      'coin_to' =>  $request['coinTo'],
+      'value' => $request['value'],
+      'value_with_taxes' =>  $value_with_taxes,
+      'payment_tax' =>  $payment_tax,
+      'converter_tax' =>  $converter_tax,
+      'destination_coin_value' => $quotation['bid'],
+      'value_new' => $valueNew,
+    ];
+    $this->saveHistory($history);
     return [
       'data' => [
         'coinBase' => $request['coinBase'],
@@ -77,5 +92,10 @@ class Quotation  implements IQuotation
   private function getNewValue($value_with_taxes, $bid )
   {
     return $value_with_taxes / $bid;
+  }
+  private function saveHistory($history)
+  {
+    $historyModel = new HistoryModel();
+    $this->historyRepository->save($historyModel, $history);
   }
 }
