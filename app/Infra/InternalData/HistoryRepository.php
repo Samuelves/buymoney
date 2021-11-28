@@ -9,7 +9,7 @@ class HistoryRepository implements IHistory
 {
     public function findAll(History $history)
     {
-        return $history::paginate(10);
+        return $history::paginate(5);
     }
     public function save(History $history, array $data)
     {
